@@ -21,6 +21,10 @@ export class AuthService {
     return this.tokenSubject.value;
   }
 
+  hasToken(): boolean {
+    return !!this.token;
+  }
+
   login(username: string, password: string): Observable<any> {
     const formData = {
       username,
@@ -28,10 +32,12 @@ export class AuthService {
     };
 
     return this.http
-      .post('http://test-demo.aemenersol.com/api/account/login', formData)
+      .post<string>(
+        'http://test-demo.aemenersol.com/api/account/login',
+        formData
+      )
       .pipe(
-        tap((response: any) => {
-          const token = response.token; // Assuming the response contains a 'token' field
+        tap((token) => {
           localStorage.setItem('token', token);
           this.tokenSubject.next(token);
         })
