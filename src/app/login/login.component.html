@@ -18,6 +18,12 @@
             <div *ngIf="f['email'].errors['required']">Email is required</div>
             <div *ngIf="f['email'].errors['email']">Email is invalid</div>
           </div>
+          <div
+            *ngIf="submitted && !f['email'].errors && loginErrorMessage"
+            class="text-danger"
+          >
+            <div *ngIf="loginErrorMessage">Invalid email or password</div>
+          </div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
@@ -29,8 +35,12 @@
             formControlName="password"
           />
           <div *ngIf="submitted && f['password'].errors" class="text-danger">
-            <div *ngIf="f['password'].errors['required']">Password is required</div>
-            <div *ngIf="f['password'].errors['minlength']">Password should have at least 6 characters</div>
+            <div *ngIf="f['password'].errors['required']">
+              Password is required
+            </div>
+            <div *ngIf="f['password'].errors['minlength']">
+              Password should have at least 6 characters
+            </div>
           </div>
         </div>
         <div class="">

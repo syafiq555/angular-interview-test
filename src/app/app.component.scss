@@ -4,3 +4,8 @@
   display: flex;
   flex-direction: column;
 }
+
+.nav-link {
+  cursor: pointer;
+  user-select: none;
+}

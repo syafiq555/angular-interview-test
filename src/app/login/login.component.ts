@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth-service.service';
 export class LoginComponent {
   loginForm: FormGroup;
   submitted = false;
+  loginErrorMessage = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
@@ -44,6 +45,7 @@ export class LoginComponent {
       (error) => {
         // Handle error responses (e.g., display error message)
         console.error('Login failed:', error);
+        this.loginErrorMessage = error.statusText;
       }
     );
   }
